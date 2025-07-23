@@ -1,7 +1,7 @@
 // components/Header.tsx
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Phone,
   Clock,
@@ -15,9 +15,25 @@ import {
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
-
+  const servicesRef = useRef<HTMLDivElement>(null);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleServices = () => setIsServicesOpen(!isServicesOpen);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        servicesRef.current &&
+        !servicesRef.current.contains(event.target as Node)
+      ) {
+        setIsServicesOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <header className="bg-white shadow-lg sticky top-0 z-50">
@@ -34,6 +50,12 @@ export default function Header() {
                 <Clock className="h-4 w-4" />
                 <span>24/7 On-Call Support</span>
               </div>
+            </div>
+            <div className="flex items-center space-x-1">
+              <span className="italic text-yellow-200">
+                This platform is currently in its beta phase — thank you for
+                your patience as we continue to improve your experience.
+              </span>
             </div>
             <div className="flex items-center space-x-1">
               <MapPin className="h-4 w-4" />
@@ -65,20 +87,20 @@ export default function Header() {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
               <a
-                href="#home"
+                href="/"
                 className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
               >
                 Home
               </a>
               <a
-                href="#about"
+                href="/about-us"
                 className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
               >
                 About Us
               </a>
 
               {/* Services Dropdown */}
-              <div className="relative">
+              <div className="relative" ref={servicesRef}>
                 <button
                   onClick={toggleServices}
                   className="flex items-center space-x-1 text-gray-700 hover:text-blue-600 font-medium transition-colors"
@@ -94,34 +116,34 @@ export default function Header() {
                 {isServicesOpen && (
                   <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-100 py-2 z-50">
                     <a
-                      href="#skilled-nursing"
+                      href="/services"
                       className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
                     >
-                      Skilled Nursing Services
+                      Compression Therapy
                     </a>
                     <a
-                      href="#wound-care"
+                      href="/services"
                       className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
                     >
-                      Complex Wound Management
+                      Coordination of Care
                     </a>
                     <a
-                      href="#medication"
-                      className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
-                    >
-                      Medication Management
-                    </a>
-                    <a
-                      href="#chronic-care"
-                      className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
-                    >
-                      Chronic Disease Management
-                    </a>
-                    <a
-                      href="#safety"
+                      href="/services"
                       className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
                     >
                       Home Safety Evaluation
+                    </a>
+                    <a
+                      href="/services"
+                      className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                    >
+                      Pain Management
+                    </a>
+                    <a
+                      href="/services"
+                      className="border-t border-gray-100 flex items-center justify-center px-4 py-2 text-blue-700 hover:bg-blue-50 hover:text-blue-600"
+                    >
+                      View All
                     </a>
                   </div>
                 )}
