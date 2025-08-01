@@ -88,7 +88,7 @@ const ContactUsPage = () => {
   };
 
   const validateForm = () => {
-    const newErrors = {};
+    const newErrors: any = {};
 
     if (!formData.firstName.trim())
       newErrors.firstName = "First name is required";
