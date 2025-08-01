@@ -2,15 +2,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import {
-  Phone,
-  Clock,
-  MapPin,
-  Stethoscope,
-  ChevronDown,
-  Menu,
-  X,
-} from "lucide-react";
+import { Phone, Clock, MapPin, ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
 
 export default function Header() {
@@ -163,11 +155,17 @@ export default function Header() {
               >
                 Contact
               </a>
-              <a
+              {/* <a
                 href="#referrals"
                 className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
               >
                 Referrals
+              </a> */}
+              <a
+                href="/careers"
+                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+              >
+                Career
               </a>
 
               <button className="bg-gradient-to-r from-blue-600 to-teal-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-teal-700 transition-all duration-300 shadow-md">

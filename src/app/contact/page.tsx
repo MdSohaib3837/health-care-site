@@ -11,17 +11,10 @@ import {
   AlertCircle,
   Stethoscope,
   Heart,
-  Shield,
-  Users,
-  Award,
   Calendar,
   MessageSquare,
-  ArrowRight,
   Loader2,
-  Star,
   User,
-  Building,
-  Home,
 } from "lucide-react";
 
 const ContactUsPage = () => {
@@ -174,7 +167,7 @@ const ContactUsPage = () => {
             </div>
             <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
               Contact
-              <span className="text-blue-600"> All Nurses</span>
+              <span className="text-blue-600">All Nurses</span>
               <br />
               Home Health
             </h1>

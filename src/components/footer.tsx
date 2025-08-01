@@ -43,6 +43,7 @@ export function Footer() {
                 { name: "Testimonials", href: "/testimonials" },
                 { name: "Careers", href: "/careers" },
                 { name: "Contact", href: "/contact" },
+                { name: "FAQ", href: "/faq" },
               ].map((link) => (
                 <Link
                   key={link.name}
@@ -60,12 +61,19 @@ export function Footer() {
             <h4 className="text-base font-semibold">Our Services</h4>
             <nav className="space-y-1">
               {[
-                { name: "Skilled Nursing", href: "/services/skilled-nursing" },
-                { name: "Wound Care", href: "/services/wound-care" },
-                { name: "Post-Surgical Care", href: "/services/post-surgical" },
+                // { name: "Skilled Nursing", href: "/services/skilled-nursing" },
+                // { name: "Wound Care", href: "/services/wound-care" },
+                // { name: "Post-Surgical Care", href: "/services/post-surgical" },
+                // {
+                //   name: "Medication Management",
+                //   href: "/services/medication-management",
+                // },
+                { name: "Skilled Nursing", href: "/services" },
+                { name: "Wound Care", href: "/services" },
+                { name: "Post-Surgical Care", href: "/services" },
                 {
                   name: "Medication Management",
-                  href: "/services/medication-management",
+                  href: "/services",
                 },
               ].map((service) => (
                 <Link
