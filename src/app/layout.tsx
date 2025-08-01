@@ -6,8 +6,11 @@ import Header from "@/components/header";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "HealthCare Website",
+  title: "Home Healthcare",
   description: "Trusted health services by professionals",
+  icons: {
+    icon: "/favicon.jpg", // You can also use PNG or SVG
+  },
 };
 
 export default function RootLayout({
@@ -17,6 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.jpg" />
+      </head>
       <body className={inter.className}>
         <Header />
         <main className="min-h-screen">{children}</main>

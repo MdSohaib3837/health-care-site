@@ -51,7 +51,7 @@ const HealthcareHomepage = () => {
                 </h1>
                 <p className="text-xl text-gray-600 leading-relaxed">
                   Together, we are on a mission to improve the lives and
-                  outcomes of every individual we serve—one home at a time.
+                  outcomes of every individual we serve one home at a time.
                 </p>
               </div>
 
@@ -77,7 +77,7 @@ const HealthcareHomepage = () => {
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-green-600">100%</div>
-                  <div className="text-sm text-gray-600">Nurse-Led</div>
+                  <div className="text-sm text-gray-600">Nurse Led</div>
                 </div>
               </div>
             </div>
@@ -167,7 +167,7 @@ const HealthcareHomepage = () => {
               Comprehensive Home Healthcare Services
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From skilled nursing to specialized wound care, our nurse-led team
+              From skilled nursing to specialized wound care, our nurse led team
               provides the expert care you need in the comfort of your own home.
             </p>
           </div>
@@ -196,7 +196,7 @@ const HealthcareHomepage = () => {
                   management, and coordination with your healthcare team.
                 </p>
                 <a
-                  href="#"
+                  href="/services"
                   className="text-blue-600 font-medium hover:text-blue-700 flex items-center"
                 >
                   Learn More <ChevronRight className="ml-1 h-4 w-4" />
@@ -226,7 +226,7 @@ const HealthcareHomepage = () => {
                   advanced certifications in wound care and debridement.
                 </p>
                 <a
-                  href="#"
+                  href="/services"
                   className="text-teal-600 font-medium hover:text-teal-700 flex items-center"
                 >
                   Learn More <ChevronRight className="ml-1 h-4 w-4" />
@@ -256,7 +256,7 @@ const HealthcareHomepage = () => {
                   ensure optimal therapeutic outcomes.
                 </p>
                 <a
-                  href="#"
+                  href="/services"
                   className="text-green-600 font-medium hover:text-green-700 flex items-center"
                 >
                   Learn More <ChevronRight className="ml-1 h-4 w-4" />
@@ -286,7 +286,7 @@ const HealthcareHomepage = () => {
                   chronic conditions with ongoing education and support.
                 </p>
                 <a
-                  href="#"
+                  href="/services"
                   className="text-purple-600 font-medium hover:text-purple-700 flex items-center"
                 >
                   Learn More <ChevronRight className="ml-1 h-4 w-4" />
@@ -316,7 +316,7 @@ const HealthcareHomepage = () => {
                   and emergency preparedness planning.
                 </p>
                 <a
-                  href="#"
+                  href="/services"
                   className="text-orange-600 font-medium hover:text-orange-700 flex items-center"
                 >
                   Learn More <ChevronRight className="ml-1 h-4 w-4" />
@@ -346,7 +346,7 @@ const HealthcareHomepage = () => {
                   tailored to your individual needs and comfort.
                 </p>
                 <a
-                  href="#"
+                  href="/services"
                   className="text-indigo-600 font-medium hover:text-indigo-700 flex items-center"
                 >
                   Learn More <ChevronRight className="ml-1 h-4 w-4" />
@@ -378,7 +378,7 @@ const HealthcareHomepage = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Nurse-Owned & Operated
+                      Nurse Owned & Operated
                     </h3>
                     <p className="text-gray-600">
                       Founded and led by experienced registered nurses with a
@@ -410,10 +410,10 @@ const HealthcareHomepage = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      24/7 On-Call Support
+                      24/7 On Call Support
                     </h3>
                     <p className="text-gray-600">
-                      Round-the-clock nurse availability to support our active
+                      Round the clock nurse availability to support our active
                       patients with urgent clinical concerns.
                     </p>
                   </div>

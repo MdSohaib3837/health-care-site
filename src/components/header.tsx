@@ -11,6 +11,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import Image from "next/image";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -71,8 +72,15 @@ export default function Header() {
           <div className="flex justify-between items-center py-4">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <div className="bg-gradient-to-r from-blue-600 to-teal-600 p-3 rounded-xl">
-                <Stethoscope className="h-8 w-8 text-white" />
+              <div className="p-3 rounded-xl">
+                <Image
+                  src="/favicon.jpg"
+                  alt="Logo"
+                  width={40}
+                  height={40}
+                  className="w-full h-full object-cover rounded-md"
+                />
+                {/* <Stethoscope className="h-8 w-8 text-white" /> */}
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">

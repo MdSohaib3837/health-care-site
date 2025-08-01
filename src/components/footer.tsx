@@ -14,7 +14,7 @@ export function Footer() {
               </p>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
-              Nurse-owned and operated home healthcare company bringing clinical
+              Nurse owned and operated home healthcare company bringing clinical
               precision and compassion into every home we serve.
             </p>
             <div className="flex items-center space-x-2 text-sm">

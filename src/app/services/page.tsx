@@ -170,7 +170,7 @@ const ServicesPage = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-8 items-start">
             {primaryServices.map((service) => {
               const IconComponent = service.icon;
               const isExpanded = expandedService === service.id;
@@ -178,7 +178,7 @@ const ServicesPage = () => {
               return (
                 <div
                   key={service.id}
-                  className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden"
+                  className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-visible relative"
                 >
                   <div className="p-8">
                     <div className="flex items-start space-x-4 mb-6">
@@ -212,7 +212,7 @@ const ServicesPage = () => {
                     </button>
 
                     {isExpanded && (
-                      <div className="mt-6 space-y-3">
+                      <div className="absolute left-0 mt-2 w-full bg-white rounded-xl shadow-lg border-b border-gray-100 p-6 space-y-3 z-50">
                         {service.features.map((feature, index) => (
                           <div
                             key={index}
@@ -391,11 +391,11 @@ const ServicesPage = () => {
                     </h3>
                     <p className="text-blue-800 mb-4">
                       If you're unsure whether you're in our service area, give
-                      us a call—we're happy to help!
+                      us a call we're happy to help!
                     </p>
-                    <button className="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                    {/* <button className="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
                       Check Service Area
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>

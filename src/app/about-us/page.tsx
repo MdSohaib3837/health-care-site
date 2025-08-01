@@ -88,7 +88,7 @@ const AboutUsPage = () => {
             </h2>
             <p className="text-2xl text-gray-600 font-light leading-relaxed mb-12">
               Together, we are on a mission to improve the lives and outcomes of
-              every individual we serve—
+              every individual we serve{" "}
               <span className="text-blue-600 font-medium">
                 one home at a time.
               </span>
@@ -146,7 +146,7 @@ const AboutUsPage = () => {
               What Makes Us Different
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We are nurse-owned, locally based, and patient-driven. Our culture
+              We are nurse owned, locally based, and patient-driven. Our culture
               is built on integrity, compassion, and clinical excellence.
             </p>
           </div>
@@ -159,7 +159,7 @@ const AboutUsPage = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    Nurse-Owned Leadership
+                    Nurse Owned Leadership
                   </h3>
                   <p className="text-gray-600">
                     As registered nurses ourselves, we understand what patients
@@ -181,7 +181,7 @@ const AboutUsPage = () => {
                   <p className="text-gray-600">
                     Our nurses are wound care certified with advanced training
                     in infusion therapy, ostomy management, and selective sharp
-                    debridement—skills that set us apart.
+                    debridement skills that set us apart.
                   </p>
                 </div>
               </div>
@@ -211,8 +211,8 @@ const AboutUsPage = () => {
                     24/7 Clinical Support
                   </h3>
                   <p className="text-gray-600">
-                    We provide 24/7 on-call nurse availability to support our
-                    active patients with urgent clinical concerns—because
+                    We provide 24/7 on call nurse availability to support our
+                    active patients with urgent clinical concerns because
                     healing doesn't wait for business hours.
                   </p>
                 </div>
@@ -266,9 +266,9 @@ const AboutUsPage = () => {
                 with advanced certifications and compassionate care.
               </p>
               <p className="text-lg text-gray-600">
-                Our model empowers nurses to provide care with
-                confidence—delivering thoughtful, personalized services that
-                meet patients where they are, both physically and emotionally.
+                Our model empowers nurses to provide care with confidence
+                delivering thoughtful, personalized services that meet patients
+                where they are, both physically and emotionally.
               </p>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
