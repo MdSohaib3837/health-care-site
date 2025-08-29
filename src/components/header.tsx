@@ -171,9 +171,12 @@ export default function Header() {
                 Career
               </a>
 
-              <button className="bg-gradient-to-r from-blue-600 to-teal-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-teal-700 transition-all duration-300 shadow-md">
+              <a
+                href="/contact"
+                className="bg-gradient-to-r from-blue-600 to-teal-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-teal-700 transition-all duration-300 shadow-md"
+              >
                 Schedule Care
-              </button>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
