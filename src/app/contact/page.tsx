@@ -167,9 +167,8 @@ const ContactUsPage = () => {
             </div>
             <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
               Contact
-              <span className="text-blue-600">All Nurses</span>
               <br />
-              Home Health
+              <span className="text-blue-600">All Nurses</span> Home Health
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed mb-8">
               Ready to get started? We're here to help. Contact us today to

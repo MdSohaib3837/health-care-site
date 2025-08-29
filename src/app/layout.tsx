@@ -9,7 +9,7 @@ export const metadata = {
   title: "Home Healthcare",
   description: "Trusted health services by professionals",
   icons: {
-    icon: "/favicon.jpg", // You can also use PNG or SVG
+    icon: "/favicon1.jpg", // You can also use PNG or SVG
   },
 };
 
@@ -20,9 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
+      {/* <head>
         <link rel="icon" href="/favicon.jpg" />
-      </head>
+      </head> */}
       <body className={inter.className}>
         <Header />
         <main className="min-h-screen">{children}</main>

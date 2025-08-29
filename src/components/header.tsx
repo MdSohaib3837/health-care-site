@@ -61,17 +61,20 @@ export default function Header() {
       {/* Main Navigation */}
       <nav className="bg-white border-b border-gray-100">
         <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center py-4">
+          <div className="flex justify-between items-center">
             {/* Logo */}
             <div className="flex items-center space-x-3">
               <div className="p-3 rounded-xl">
                 <Image
-                  src="/favicon.jpg"
+                  src="/favicon.png"
                   alt="Logo"
-                  width={40}
-                  height={40}
-                  className="w-full h-full object-cover rounded-md"
+                  width={65}
+                  height={65}
+                  className="w-full h-full rounded-md"
                 />
+                {/* <div className="bg-gradient-to-r from-blue-600 to-teal-600 p-3 rounded-xl">
+                <Stethoscope className="h-8 w-8 text-white" />
+              </div> */}
                 {/* <Stethoscope className="h-8 w-8 text-white" /> */}
               </div>
               <div>

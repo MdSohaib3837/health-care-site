@@ -145,7 +145,10 @@ export function Footer() {
                 Now Accepting New Referrals!
               </p>
               <p className="text-xs text-gray-400">
-                Most insurance plans accepted
+                Most commercial insurance plans accepted
+              </p>
+              <p className="text-xs text-gray-400">
+                We do not accept Medicare or Medicaid at this time
               </p>
             </div>
           </div>

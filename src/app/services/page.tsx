@@ -25,9 +25,13 @@ import {
   ChevronUp,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const ServicesPage = () => {
   const [expandedService, setExpandedService] = useState(null);
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   const toggleService = (serviceId: any) => {
     setExpandedService(expandedService === serviceId ? null : serviceId);
@@ -116,6 +120,35 @@ const ServicesPage = () => {
     "Blanco County",
   ];
 
+  const handleSubscribe = async () => {
+    if (!email) {
+      setMessage("Please enter a valid email.");
+      return;
+    }
+    setLoading(true);
+    setMessage("");
+
+    try {
+      const res = await fetch("/api/notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setMessage("Subscription successful!");
+        setEmail("");
+      } else {
+        setMessage(data.message);
+      }
+    } catch (error) {
+      setMessage("⚠️ Something went wrong.");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -141,7 +174,7 @@ const ServicesPage = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-gradient-to-r from-blue-600 to-teal-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-teal-700 transition-all duration-300 shadow-lg flex items-center justify-center">
-                Schedule Care Today
+                <Link href="/contact">Schedule Care Today</Link>
                 <ArrowRight className="ml-2 h-5 w-5" />
               </button>
               <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold text-lg hover:border-blue-600 hover:text-blue-600 transition-all duration-300 flex items-center justify-center">
@@ -347,9 +380,22 @@ const ServicesPage = () => {
             <p className="text-gray-600 mb-6">
               Want to be notified when these services become available?
             </p>
-            <button className="bg-gradient-to-r from-blue-600 to-teal-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-teal-700 transition-all duration-300">
-              Get Notified
-            </button>
+            <div className="flex justify-center gap-3">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="px-4 py-3 border border-gray-300 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <button
+                onClick={handleSubscribe}
+                className="bg-gradient-to-r from-blue-600 to-teal-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-teal-700 transition-all duration-300"
+              >
+                {loading ? "Sending..." : "Get Notified"}
+              </button>
+            </div>
+            {message && <p className="mt-4 text-sm text-gray-700">{message}</p>}
           </div>
         </div>
       </section>
@@ -516,11 +562,11 @@ const ServicesPage = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors duration-300">
-              Schedule a Consultation
+              <Link href="/contact">Schedule a Consultation</Link>
             </button>
-            <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300">
+            {/* <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300">
               Request Information
-            </button>
+            </button> */}
           </div>
         </div>
       </section>
