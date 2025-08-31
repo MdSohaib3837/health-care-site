@@ -31,7 +31,7 @@ export default function Header() {
   return (
     <header className="bg-white shadow-lg sticky top-0 z-50">
       {/* Top Bar */}
-      <div className="bg-gradient-to-r from-blue-600 to-teal-600 text-white py-2">
+      {/* <div className="bg-gradient-to-r from-blue-600 to-teal-600 text-white py-2">
         <div className="container mx-auto px-4">
           <div className="flex flex-col sm:flex-row justify-between items-center text-sm">
             <div className="flex items-center space-x-4 mb-2 sm:mb-0">
@@ -56,7 +56,7 @@ export default function Header() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Main Navigation */}
       <nav className="bg-white border-b border-gray-100">
@@ -81,7 +81,7 @@ export default function Header() {
                 <h1 className="text-2xl font-bold text-gray-900">
                   All Nurses Home Health
                 </h1>
-                <p className="text-sm text-blue-600 font-medium">
+                <p className="text-sm text-blue-600 font-medium hidden md:block">
                   "Led by Nurses. Trusted by Families"
                 </p>
               </div>
@@ -197,55 +197,70 @@ export default function Header() {
             <div className="lg:hidden bg-white border-t border-gray-100 py-4">
               <div className="space-y-4">
                 <a
-                  href="#home"
+                  href="/"
                   className="block text-gray-700 hover:text-blue-600 font-medium"
                 >
                   Home
                 </a>
                 <a
-                  href="#about"
+                  href="/about-us"
                   className="block text-gray-700 hover:text-blue-600 font-medium"
                 >
                   About Us
                 </a>
-                <div className="space-y-2">
+                <a
+                  href="/services"
+                  className="block text-gray-700 hover:text-blue-600 font-medium"
+                >
+                  Services
+                </a>
+                {/* <div className="space-y-2">
                   <div className="font-medium text-gray-900">Services</div>
                   <div className="pl-4 space-y-2">
                     <a
-                      href="#skilled-nursing"
+                      href="/services#skilled-nursing"
                       className="block text-gray-600 hover:text-blue-600"
                     >
-                      Skilled Nursing Services
+                      Compression Therapy
                     </a>
                     <a
-                      href="#wound-care"
+                      href="/services#wound-care"
                       className="block text-gray-600 hover:text-blue-600"
                     >
-                      Complex Wound Management
+                      Coordination of Care
                     </a>
                     <a
-                      href="#medication"
+                      href="/services#medication"
                       className="block text-gray-600 hover:text-blue-600"
                     >
-                      Medication Management
+                      Home Safety Evaluation
+                    </a>
+                    <a
+                      href="/services#medication"
+                      className="block text-gray-600 hover:text-blue-600"
+                    >
+                      Home Safety Evaluation
                     </a>
                   </div>
-                </div>
+                </div> */}
                 <a
-                  href="#contact"
+                  href="/contact"
                   className="block text-gray-700 hover:text-blue-600 font-medium"
                 >
                   Contact
                 </a>
                 <a
-                  href="#referrals"
+                  href="/careers"
                   className="block text-gray-700 hover:text-blue-600 font-medium"
                 >
-                  Referrals
+                  Career
                 </a>
-                <button className="w-full bg-gradient-to-r from-blue-600 to-teal-600 text-white px-6 py-3 rounded-lg font-semibold">
+                <a
+                  href="/contact"
+                  className="w-full bg-gradient-to-r from-blue-600 to-teal-600 text-white px-6 py-3 rounded-lg font-semibold"
+                >
                   Schedule Care
-                </button>
+                </a>
               </div>
             </div>
           )}

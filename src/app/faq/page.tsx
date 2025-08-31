@@ -20,6 +20,7 @@ import {
   X,
 } from "lucide-react";
 import { FAQ, faqs } from "@/data/faq";
+import Link from "next/link";
 
 const FAQPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -409,10 +410,12 @@ const FAQPage = () => {
               <Phone className="mr-2 h-5 w-5" />
               Call (800) 553-2892
             </a>
-            {/* <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300 flex items-center justify-center">
-              Schedule Consultation
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </button> */}
+            <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300 flex items-center justify-center">
+              <Link href="/contact">
+                Schedule a Consultation
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </button>
           </div>
         </div>
       </section>

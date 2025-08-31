@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   Heart,
@@ -13,10 +14,13 @@ import {
   BookOpen,
   Phone,
   Quote,
+  ArrowRight,
 } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const AboutUsPage = () => {
+  const router = useRouter();
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -524,10 +528,13 @@ const AboutUsPage = () => {
             compassionate care in the comfort of home.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            {/* <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors duration-300 flex items-center justify-center">
+            <button
+              onClick={() => router.push("/contact")}
+              className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors duration-300 flex items-center justify-center"
+            >
               Schedule a Consultation
               <ArrowRight className="ml-2 h-5 w-5" />
-            </button> */}
+            </button>
             <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300 flex items-center justify-center">
               <Phone className="mr-2 h-5 w-5" />
               Call (800) 553-2892

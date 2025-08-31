@@ -229,7 +229,7 @@ const CareersPage = () => {
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <a
-                      href="mailto:referrals@allnurseshomehealth.com"
+                      href="mailto:referrals@allnurseshomehealth.com?subject=Resume Submission&body=Please attach your resume."
                       className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors inline-flex items-center justify-center"
                     >
                       <Mail className="mr-2 h-4 w-4" />

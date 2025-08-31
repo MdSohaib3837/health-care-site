@@ -255,14 +255,14 @@ const ServicesPage = () => {
                           </div>
                         ))}
 
-                        <div className="mt-6 pt-6 border-t border-gray-200">
+                        {/* <div className="mt-6 pt-6 border-t border-gray-200">
                           <button
                             className={`text-${service.color}-600 font-medium hover:text-${service.color}-700 flex items-center`}
                           >
                             Learn More About This Service
                             <ArrowRight className="ml-2 h-4 w-4" />
                           </button>
-                        </div>
+                        </div> */}
                       </div>
                     )}
                   </div>

@@ -348,7 +348,10 @@ const NondiscriminationPage = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
                   >
-                    https://ocrportal.hhs.gov/ocr/portal/lobby.jsf
+                    {/* https://ocrportal.hhs.gov/ocr/portal/lobby.jsf */}
+                    <span className="break-all">
+                      https://ocrportal.hhs.gov/ocr/portal/lobby.jsf
+                    </span>
                     <ExternalLink className="h-4 w-4 ml-1" />
                   </a>
                 </div>
@@ -403,7 +406,9 @@ const NondiscriminationPage = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
                   >
-                    http://www.hhs.gov/ocr/office/file/index.html
+                    <span className="break-all">
+                      http://www.hhs.gov/ocr/office/file/index.html
+                    </span>
                     <ExternalLink className="h-4 w-4 ml-1" />
                   </a>
                 </div>

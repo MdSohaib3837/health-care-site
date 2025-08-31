@@ -38,7 +38,7 @@ export function Footer() {
             <h4 className="text-base font-semibold">Quick Links</h4>
             <nav className="space-y-1">
               {[
-                { name: "About Us", href: "/about" },
+                { name: "About Us", href: "/about-us" },
                 { name: "Our Services", href: "/services" },
                 { name: "Testimonials", href: "/testimonials" },
                 { name: "Careers", href: "/careers" },
@@ -168,12 +168,12 @@ export function Footer() {
               >
                 Privacy Policy
               </Link>
-              <Link
+              {/* <Link
                 href="/terms"
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 Terms
-              </Link>
+              </Link> */}
               <Link
                 href="/nondiscrimination"
                 className="text-gray-400 hover:text-white transition-colors"
