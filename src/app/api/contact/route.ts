@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     // 2️⃣ Send email
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
-      to: "referrals@allnurseshomehealth.com",
+      to: "rebekah.m7388@gmail.com",
       //   to: "muhammad.sohaib3837@gmail.com",
       subject: `New Contact Form Submission - ${serviceType}`,
       text: `
