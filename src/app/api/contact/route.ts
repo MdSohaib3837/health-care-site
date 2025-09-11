@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { createClient } from "@supabase/supabase-js";
 
 export async function POST(req: Request) {
   try {
@@ -30,7 +29,7 @@ export async function POST(req: Request) {
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: "referrals@allnurseshomehealth.com",
-      //   to: "muhammad.sohaib3837@gmail.com",
+      // to: "muhammad.sohaib3837@gmail.com",
       subject: `New Contact Form Submission - ${serviceType}`,
       text: `
       Contact Information:
@@ -53,28 +52,6 @@ export async function POST(req: Request) {
       Submitted: ${new Date().toLocaleString()}
       `,
     });
-
-    // 3️⃣ Optional: Save to Supabase
-    if (process.env.SUPABASE_URL && process.env.SUPABASE_KEY) {
-      const supabase = createClient(
-        process.env.SUPABASE_URL,
-        process.env.SUPABASE_KEY
-      );
-
-      await supabase.from("contacts").insert([
-        {
-          firstName,
-          lastName,
-          email,
-          phone,
-          serviceType,
-          message,
-          urgency,
-          patientName,
-          relationship,
-        },
-      ]);
-    }
 
     return NextResponse.json({
       success: true,

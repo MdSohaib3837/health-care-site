@@ -839,13 +839,13 @@ const ContactUsPage = () => {
               <Phone className="mr-2 h-5 w-5" />
               Call (800) 553-2892
             </a>
-            <a
+            {/* <a
               href="mailto:referrals@allnurseshomehealth.com"
               className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300 flex items-center justify-center"
             >
               <Mail className="mr-2 h-5 w-5" />
               Email Us Now
-            </a>
+            </a> */}
           </div>
 
           <div className="mt-8 text-center">

@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { createClient } from "@supabase/supabase-js";
 
 export async function POST(req: Request) {
   try {
@@ -28,15 +27,6 @@ export async function POST(req: Request) {
       subject: "New Subscription Request",
       text: `A user subscribed with email: ${email}`,
     });
-
-    // Save to Supabase (optional)
-    if (process.env.SUPABASE_URL && process.env.SUPABASE_KEY) {
-      const supabase = createClient(
-        process.env.SUPABASE_URL,
-        process.env.SUPABASE_KEY
-      );
-      await supabase.from("subscriptions").insert([{ email }]);
-    }
 
     return NextResponse.json({
       success: true,
