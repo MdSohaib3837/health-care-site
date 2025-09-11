@@ -47,18 +47,32 @@ export async function POST(req: Request) {
       );
     }
 
+    // const transporter = nodemailer.createTransport({
+    //   service: "gmail",
+    //   auth: {
+    //     user: process.env.EMAIL_USER,
+    //     pass: process.env.EMAIL_PASS,
+    //   },
+    // });
+
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.office365.com",
+      port: 587,
+      secure: false, // true for 465, false for other ports
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: process.env.BUSINESS_EMAIL_USER, // referrals@allnurseshomehealth.com
+        pass: process.env.BUSINESS_EMAIL_PASS, // your business email password
+      },
+      tls: {
+        ciphers: "SSLv3",
+        rejectUnauthorized: false,
       },
     });
 
     // Send email to admin
     await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: "muhammad.sohaib3837@gmail.com",
+      from: `"Subscription" <${process.env.BUSINESS_EMAIL_USER}>`,
+      to: "referrals@allnurseshomehealth.com",
       subject: "New Subscription Request",
       text: `A user subscribed with email: ${email}`,
     });
