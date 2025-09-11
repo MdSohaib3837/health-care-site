@@ -21,7 +21,7 @@ export async function POST(req: Request) {
 
     // 2️⃣ Send email
     await resend.emails.send({
-      from: "Home Health <referrals@allnurseshomehealth.com>",
+      from: "All Nurses Home Health <rebekah.m7388@gmail.com>",
       to: "referrals@allnurseshomehealth.com",
       // to: "muhammad.sohaib3837@gmail.com",
       subject: `New Contact Form Submission - ${serviceType}`,

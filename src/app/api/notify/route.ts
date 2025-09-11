@@ -16,7 +16,7 @@ export async function POST(req: Request) {
     }
 
     await resend.emails.send({
-      from: "Home Health <referrals@allnurseshomehealth.com>",
+      from: "All Nurses Home Health <rebekah.m7388@gmail.com>",
       to: "referrals@allnurseshomehealth.com", // your admin email
       subject: "New Contact Form Submission",
       html: `A user subscribed with email: ${email}`,
