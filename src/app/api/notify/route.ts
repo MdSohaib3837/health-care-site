@@ -1,8 +1,5 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 // export async function POST(req: Request) {
 //   try {
@@ -47,27 +44,27 @@ export async function POST(req: Request) {
       );
     }
 
-    // const transporter = nodemailer.createTransport({
-    //   service: "gmail",
-    //   auth: {
-    //     user: process.env.EMAIL_USER,
-    //     pass: process.env.EMAIL_PASS,
-    //   },
-    // });
-
     const transporter = nodemailer.createTransport({
-      host: "smtp.office365.com",
-      port: 587,
-      secure: false, // true for 465, false for other ports
+      service: "gmail",
       auth: {
-        user: process.env.BUSINESS_EMAIL_USER, // referrals@allnurseshomehealth.com
-        pass: process.env.BUSINESS_EMAIL_PASS, // your business email password
-      },
-      tls: {
-        ciphers: "SSLv3",
-        rejectUnauthorized: false,
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
+
+    // const transporter = nodemailer.createTransport({
+    //   host: "smtp.office365.com",
+    //   port: 587,
+    //   secure: false, // true for 465, false for other ports
+    //   auth: {
+    //     user: process.env.BUSINESS_EMAIL_USER, // referrals@allnurseshomehealth.com
+    //     pass: process.env.BUSINESS_EMAIL_PASS, // your business email password
+    //   },
+    //   tls: {
+    //     ciphers: "SSLv3",
+    //     rejectUnauthorized: false,
+    //   },
+    // });
 
     // Send email to admin
     await transporter.sendMail({
