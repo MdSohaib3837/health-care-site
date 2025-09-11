@@ -21,7 +21,7 @@ export async function POST(req: Request) {
 
     // 2️⃣ Send email
     await resend.emails.send({
-      from: "All Nurses Home Health <rebekah.m7388@gmail.com>",
+      from: "All Nurses Home Health <no-reply@allnurseshomehealth.com>",
       to: "referrals@allnurseshomehealth.com",
       replyTo: "referrals@allnurseshomehealth.com",
       // to: "muhammad.sohaib3837@gmail.com",
