@@ -38,7 +38,7 @@ export const testimonials: Testimonial[] = [
       "The nurse that treated my wounds was outstanding. The way she explained the healing process and preparation to help prevent infection was very thorough. Her soft touch when changing my dressing was very comforting. She had an answer for every question that I asked. I appreciate her patience and caring touch.",
     author: "Mike",
     rating: 5,
-    location: "Austin,, TX",
+    location: "Austin, TX",
   },
   {
     id: "5",
@@ -71,5 +71,13 @@ export const testimonials: Testimonial[] = [
     author: "Terry",
     rating: 5,
     location: "Kyle, TX",
+  },
+  {
+    id: "9",
+    content:
+      "Rebekah was my wound care nurse for over a year. She has the ability to assess the wound and suggest different teatments, especially when the wound healing process has stalled. My skin disease, Pyoderma Gangrenosum, is rare but Rebekah took her time to research all different types of care. She does an excellent job at time management and is a problem solver. Highly recommended!",
+    author: "Pat",
+    rating: 5,
+    location: "Austin, TX",
   },
 ];

@@ -31,7 +31,7 @@ const AboutUsPage = () => {
               <div className="space-y-4">
                 <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
                   <Award className="h-4 w-4 mr-2" />
-                  Nurse-Owned & Operated Since Day One
+                  Nurse-Owned & Operated
                 </div>
                 <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
                   About

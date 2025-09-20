@@ -376,7 +376,7 @@ const TestimonialsPage = () => {
       </section>
 
       {/* Video Testimonials Coming Soon */}
-      <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
+      {/* <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <div className="bg-white rounded-2xl shadow-xl p-12 border border-gray-100">
@@ -397,7 +397,7 @@ const TestimonialsPage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Ready to Experience CTA */}
       <section className="py-20 bg-white">
