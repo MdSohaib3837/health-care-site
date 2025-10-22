@@ -89,7 +89,7 @@ export const faqs: FAQ[] = [
     question:
       "Do you offer Home Health Aides, Physical Therapy, Occupational Therapy, or Speech Therapy?",
     answer:
-      "Currently, we do not offer home health aide services, physical therapy, occupational therapy, or speech therapy. However, we are actively working to expand our services and plan to offer these in the near future. Stay connected with us for updates, or contact us at (800) 553-2892 if you'd like to be notified when these services become available.",
+      "Currently, we do not offer home health aide services or speech therapy. However, we are actively working to expand our services and plan to offer these in the near future. Stay connected with us for updates, or contact us at (800) 553-2892 if you'd like to be notified when these services become available.",
     category: "Services",
   },
 ];

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Star,
   Quote,
@@ -10,7 +10,6 @@ import {
   CheckCircle,
   ArrowRight,
   Phone,
-  Mail,
   Stethoscope,
   Shield,
   Clock,
@@ -20,70 +19,67 @@ import {
   Pause,
 } from "lucide-react";
 import { testimonials } from "@/data/testimonials";
+import ReviewForm from "@/components/reviewForm";
 
 const TestimonialsPage = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
+  const [openReviewForm, setOpenReviewForm] = useState(false);
+  const [dynamicReviews, setDynamicReviews] = useState<any[]>([]);
+  const [visibleCount, setVisibleCount] = useState(10); // Show 10 initially
 
-  // Testimonials data (same as your testimonials.ts file)
-  //   const testimonials = [
-  //     {
-  //       id: "1",
-  //       content:
-  //         "I'm very happy with the care and patience that we've experienced with All Nurses Home Health. They are very knowledgeable and helpful with explaining the healing course and what to watch out for. We are grateful to have them guide us through this rehabilitating process.",
-  //       author: "Sarah M.",
-  //       rating: 5,
-  //       location: "Austin, TX",
-  //     },
-  //     {
-  //       id: "2",
-  //       content:
-  //         "All Nurses Home Health took care of me after a major surgery. I was very impressed with their professionalism & knowledge. My nurse answered all my questions. If she didn't know the answer, she researched & promptly got back to me with an answer. I can't recommend them more highly!!",
-  //       author: "Robert K.",
-  //       rating: 5,
-  //       location: "Round Rock, TX",
-  //     },
-  //     {
-  //       id: "3",
-  //       content:
-  //         "I cannot say enough wonderful things about All Nurses Home Health and the incredible care they provided me. After undergoing multiple amputations, I was overwhelmed and unsure of how l would manage the road to recovery. From day one, they brought professionalism, compassion, and a level of care that truly went above and beyond anything I ever expected.",
-  //       author: "Maria L.",
-  //       rating: 5,
-  //       location: "Cedar Park, TX",
-  //     },
-  //     {
-  //       id: "4",
-  //       content:
-  //         "This Nurse owned company is the best for Home Health Care! The Nurses are compassionate, caring, and super knowledgeable! I would highly recommend this company for yourself, a loved one or another person who needs an At Home Nursing Service.",
-  //       author: "Jennifer P.",
-  //       rating: 5,
-  //       location: "Georgetown, TX",
-  //     },
-  //     {
-  //       id: "5",
-  //       content:
-  //         "The nurse that treated my wounds was outstanding. The way she explained the healing process and preparation to help prevent infection was very thorough. Her soft touch when changing my dressing was very comforting. She had an answer for every question that was asked.",
-  //       author: "David R.",
-  //       rating: 5,
-  //       location: "Pflugerville, TX",
-  //     },
-  //     {
-  //       id: "6",
-  //       content:
-  //         "My nurse is amazing! She is extremely skilled and has great communication. She always lets me know ahead of time when she will be arriving so I can plan the rest of my day. She cares about her patients and takes the time to explain everything she will be doing that visit.",
-  //       author: "Linda S.",
-  //       rating: 5,
-  //       location: "Leander, TX",
-  //     },
-  //   ];
+  useEffect(() => {
+    async function fetchReviews() {
+      try {
+        const res = await fetch("/api/reviews");
+        const json = await res.json();
+        if (json.success) {
+          setDynamicReviews(json.reviews || []);
+        }
+      } catch (err) {
+        console.error("Error fetching reviews:", err);
+      }
+    }
+    fetchReviews();
+  }, []);
+
+  const allTestimonials = [
+    ...dynamicReviews.map((r) => ({
+      id: r.id,
+      content: r.message,
+      author: `${r.firstname} ${r.lastname}`.trim(),
+      rating: r.rating,
+      location: r.service_type || r.location || "Austin, TX",
+    })),
+    ...testimonials,
+  ];
+
+  // Calculate actual average rating
+  const averageRating =
+    allTestimonials.length > 0
+      ? (
+          allTestimonials.reduce((acc, curr) => acc + (curr.rating || 5), 0) /
+          allTestimonials.length
+        ).toFixed(1)
+      : "5.0";
+
+  const totalTestimonials = allTestimonials.length;
+
+  // Visible testimonials for the grid
+  const visibleTestimonials = allTestimonials.slice(0, visibleCount);
+  const hasMore = visibleCount < allTestimonials.length;
+
+  const loadMore = () => {
+    setVisibleCount((prev) => Math.min(prev + 10, allTestimonials.length));
+  };
 
   const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    setCurrentTestimonial((prev) => (prev + 1) % allTestimonials.length);
   };
 
   const prevTestimonial = () => {
     setCurrentTestimonial(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+      (prev) => (prev - 1 + allTestimonials.length) % allTestimonials.length
     );
   };
 
@@ -91,15 +87,15 @@ const TestimonialsPage = () => {
     setIsAutoPlay(!isAutoPlay);
   };
 
-  // Auto-advance testimonials
+  // Auto-advance
   React.useEffect(() => {
-    if (isAutoPlay) {
+    if (isAutoPlay && allTestimonials.length > 0) {
       const interval = setInterval(nextTestimonial, 5000);
       return () => clearInterval(interval);
     }
-  }, [isAutoPlay]);
+  }, [isAutoPlay, allTestimonials.length]);
 
-  const renderStars = (rating: any) => {
+  const renderStars = (rating: number) => {
     return [...Array(5)].map((_, i) => (
       <Star
         key={i}
@@ -110,10 +106,38 @@ const TestimonialsPage = () => {
     ));
   };
 
-  const averageRating =
-    testimonials.reduce((acc, curr) => acc + curr.rating, 0) /
-    testimonials.length;
-  const totalTestimonials = testimonials.length;
+  // Render partial stars for average rating display
+  const renderAverageStars = (avgRating: number) => {
+    const fullStars = Math.floor(avgRating);
+    const hasHalfStar = avgRating % 1 >= 0.5;
+
+    return (
+      <div className="flex items-center space-x-1">
+        {[...Array(5)].map((_, i) => {
+          if (i < fullStars) {
+            return (
+              <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+            );
+          } else if (i === fullStars && hasHalfStar) {
+            return (
+              <div key={i} className="relative">
+                <Star className="h-5 w-5 text-gray-300" />
+                <div
+                  className="absolute inset-0 overflow-hidden"
+                  style={{ width: "50%" }}
+                >
+                  <Star className="h-5 w-5 text-yellow-400 fill-current" />
+                </div>
+              </div>
+            );
+          } else {
+            return <Star key={i} className="h-5 w-5 text-gray-300" />;
+          }
+        })}
+        <span className="ml-2 font-semibold text-gray-700">{avgRating}</span>
+      </div>
+    );
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -146,10 +170,8 @@ const TestimonialsPage = () => {
                 <div className="text-sm text-gray-600">Happy Patients</div>
               </div>
               <div className="text-center">
-                <div className="flex items-center justify-center space-x-1 mb-2">
-                  {renderStars(5)}
-                </div>
-                <div className="text-sm text-gray-600">Average Rating</div>
+                {renderAverageStars(parseFloat(averageRating))}
+                <div className="text-sm text-gray-600 mt-2">Average Rating</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-teal-600">100%</div>
@@ -161,97 +183,101 @@ const TestimonialsPage = () => {
       </section>
 
       {/* Featured Testimonial Carousel */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="relative bg-gradient-to-br from-blue-600 to-teal-600 rounded-2xl p-12 text-white">
-              {/* Background Pattern */}
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-8 left-8">
-                  <Quote className="h-24 w-24" />
-                </div>
-                <div className="absolute bottom-8 right-8 rotate-180">
-                  <Quote className="h-24 w-24" />
-                </div>
-              </div>
-
-              <div className="relative z-10">
-                {/* Controls */}
-                <div className="flex justify-between items-center mb-8">
-                  <h2 className="text-3xl font-bold">
-                    Featured Patient Stories
-                  </h2>
-                  <div className="flex items-center space-x-4">
-                    <button
-                      onClick={toggleAutoPlay}
-                      className="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition-colors"
-                    >
-                      {isAutoPlay ? (
-                        <Pause className="h-5 w-5" />
-                      ) : (
-                        <Play className="h-5 w-5" />
-                      )}
-                    </button>
-                    <button
-                      onClick={prevTestimonial}
-                      className="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition-colors"
-                    >
-                      <ChevronLeft className="h-5 w-5" />
-                    </button>
-                    <button
-                      onClick={nextTestimonial}
-                      className="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition-colors"
-                    >
-                      <ChevronRight className="h-5 w-5" />
-                    </button>
+      {allTestimonials.length > 0 && (
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="relative bg-gradient-to-br from-blue-600 to-teal-600 rounded-2xl p-12 text-white">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute top-8 left-8">
+                    <Quote className="h-24 w-24" />
+                  </div>
+                  <div className="absolute bottom-8 right-8 rotate-180">
+                    <Quote className="h-24 w-24" />
                   </div>
                 </div>
 
-                {/* Testimonial Content */}
-                <div className="text-center">
-                  <div className="flex justify-center mb-6">
-                    {renderStars(testimonials[currentTestimonial].rating)}
-                  </div>
-
-                  <blockquote className="text-2xl lg:text-3xl font-light leading-relaxed mb-8 italic">
-                    "{testimonials[currentTestimonial].content}"
-                  </blockquote>
-
-                  <div className="flex items-center justify-center space-x-4">
-                    <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center">
-                      <Users className="h-8 w-8" />
-                    </div>
-                    <div className="text-left">
-                      <div className="text-xl font-semibold">
-                        {testimonials[currentTestimonial].author}
-                      </div>
-                      <div className="flex items-center space-x-1 opacity-90">
-                        <MapPin className="h-4 w-4" />
-                        <span>{testimonials[currentTestimonial].location}</span>
-                      </div>
+                <div className="relative z-10">
+                  {/* Controls */}
+                  <div className="flex justify-between items-center mb-8">
+                    <h2 className="text-3xl font-bold">
+                      Featured Patient Stories
+                    </h2>
+                    <div className="flex items-center space-x-4">
+                      <button
+                        onClick={toggleAutoPlay}
+                        className="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition-colors"
+                      >
+                        {isAutoPlay ? (
+                          <Pause className="h-5 w-5" />
+                        ) : (
+                          <Play className="h-5 w-5" />
+                        )}
+                      </button>
+                      <button
+                        onClick={prevTestimonial}
+                        className="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition-colors"
+                      >
+                        <ChevronLeft className="h-5 w-5" />
+                      </button>
+                      <button
+                        onClick={nextTestimonial}
+                        className="bg-white/20 hover:bg-white/30 p-2 rounded-lg transition-colors"
+                      >
+                        <ChevronRight className="h-5 w-5" />
+                      </button>
                     </div>
                   </div>
-                </div>
 
-                {/* Dots Indicator */}
-                <div className="flex justify-center space-x-2 mt-8">
-                  {testimonials.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentTestimonial(index)}
-                      className={`w-3 h-3 rounded-full transition-all ${
-                        index === currentTestimonial
-                          ? "bg-white"
-                          : "bg-white/40"
-                      }`}
-                    />
-                  ))}
+                  {/* Testimonial Content */}
+                  <div className="text-center">
+                    <div className="flex justify-center mb-6">
+                      {renderStars(allTestimonials[currentTestimonial].rating)}
+                    </div>
+
+                    <blockquote className="text-2xl lg:text-3xl font-light leading-relaxed mb-8 italic">
+                      "{allTestimonials[currentTestimonial].content}"
+                    </blockquote>
+
+                    <div className="flex items-center justify-center space-x-4">
+                      <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center">
+                        <Users className="h-8 w-8" />
+                      </div>
+                      <div className="text-left">
+                        <div className="text-xl font-semibold">
+                          {allTestimonials[currentTestimonial].author}
+                        </div>
+                        <div className="flex items-center space-x-1 opacity-90">
+                          <MapPin className="h-4 w-4" />
+                          <span>
+                            {allTestimonials[currentTestimonial].location}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Dots Indicator */}
+                  <div className="flex justify-center space-x-2 mt-8">
+                    {allTestimonials.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentTestimonial(index)}
+                        className={`w-3 h-3 rounded-full transition-all ${
+                          index === currentTestimonial
+                            ? "bg-white"
+                            : "bg-white/40"
+                        }`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* All Testimonials Grid */}
       <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
@@ -267,7 +293,7 @@ const TestimonialsPage = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
+            {visibleTestimonials.map((testimonial) => (
               <div
                 key={testimonial.id}
                 className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 border border-gray-100"
@@ -303,6 +329,22 @@ const TestimonialsPage = () => {
               </div>
             ))}
           </div>
+
+          {/* Load More Button */}
+          {hasMore && (
+            <div className="text-center mt-12">
+              <button
+                onClick={loadMore}
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-teal-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-teal-700 transition-all shadow-lg hover:shadow-xl"
+              >
+                Load More Reviews
+                <ChevronRight className="ml-2 h-5 w-5" />
+              </button>
+              <p className="text-gray-600 mt-4">
+                Showing {visibleCount} of {totalTestimonials} reviews
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -375,30 +417,6 @@ const TestimonialsPage = () => {
         </div>
       </section>
 
-      {/* Video Testimonials Coming Soon */}
-      {/* <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="bg-white rounded-2xl shadow-xl p-12 border border-gray-100">
-              <div className="bg-gradient-to-r from-blue-600 to-teal-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Play className="h-10 w-10 text-white" />
-              </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Video Testimonials
-              </h2>
-              <p className="text-xl text-gray-600 mb-8">
-                Coming soon: Hear directly from our patients in their own words
-                about their experience with All Nurses Home Health.
-              </p>
-              <div className="inline-flex items-center px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">
-                <Clock className="h-4 w-4 mr-2" />
-                Coming Soon
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
       {/* Ready to Experience CTA */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
@@ -457,7 +475,10 @@ const TestimonialsPage = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors duration-300 flex items-center justify-center">
+            <button
+              onClick={() => setOpenReviewForm(true)}
+              className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors duration-300 flex items-center justify-center"
+            >
               Leave a Review
               <ArrowRight className="ml-2 h-5 w-5" />
             </button>
@@ -468,6 +489,10 @@ const TestimonialsPage = () => {
           </div>
         </div>
       </section>
+      <ReviewForm
+        open={openReviewForm}
+        onClose={() => setOpenReviewForm(false)}
+      />
     </div>
   );
 };

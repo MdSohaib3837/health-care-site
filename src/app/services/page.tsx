@@ -23,6 +23,8 @@ import {
   BookOpen,
   ChevronDown,
   ChevronUp,
+  HeartPulse,
+  ActivityIcon,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -101,11 +103,41 @@ const ServicesPage = () => {
         "Complex medical equipment training",
       ],
     },
+    {
+      id: "physical-therapy",
+      title: "Physical Therapy",
+      description:
+        "We offer Physical Therapy services at our clinic to help patients regain strength, balance, and mobility. Our therapists provide one-on-one, personalized care in a professional setting to ensure your recovery is safe, effective, and goal-oriented.",
+      icon: ActivityIcon,
+      color: "purple",
+      features: [
+        "Therapeutic Exercise: Customized strengthening and stretching programs.",
+        "Balance & Fall Prevention: Targeted training to reduce fall risks.",
+        "Neuromuscular Re-Education: Improving muscle control, coordination, and balance.",
+        "Pain Management: Hands-on therapy, heat/cold treatments, and other modalities.",
+        "Post-Surgical Rehabilitation: Guided recovery and mobility training after surgery.",
+        "Chronic Condition Support: Ongoing therapy for arthritis, stroke, Parkinson’s disease, and other conditions.",
+      ],
+    },
+    {
+      id: "occupational-therapy",
+      title: "Occupational Therapy",
+      description:
+        "Our Occupational Therapy services at the clinic focus on restoring independence and function. Whether you are recovering from an injury, adjusting after surgery, or managing a chronic condition, we help you gain the skills needed for everyday life.",
+      icon: HeartPulse,
+      color: "purple",
+      features: [
+        "Daily Living Activities Training: Support for dressing, bathing, grooming, and self-care.",
+        "Hand & Arm Therapy: Strengthening and mobility exercises after injury or surgery.",
+        "Workplace & Home Safety Assessments: Guidance to create safer, more functional environments.",
+        "Adaptive Equipment Training: Instruction on the proper use of mobility aids and supportive devices.",
+        "Cognitive & Memory Support: Therapy for individuals experiencing dementia, stroke, or brain injuries.",
+        // "Pediatric OT: Helping children improve coordination, motor skills, and independence.",
+      ],
+    },
   ];
 
   const comingSoonServices = [
-    { name: "Physical Therapy", icon: Activity },
-    { name: "Occupational Therapy", icon: Users },
     { name: "Speech Therapy", icon: BookOpen },
     { name: "Home Health Aides", icon: Heart },
   ];
@@ -352,7 +384,7 @@ const ServicesPage = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {comingSoonServices.map((service, index) => {
               const IconComponent = service.icon;
               return (

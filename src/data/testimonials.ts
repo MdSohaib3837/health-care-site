@@ -80,4 +80,12 @@ export const testimonials: Testimonial[] = [
     rating: 5,
     location: "Austin, TX",
   },
+  // {
+  //   id: "10",
+  //   content:
+  //     "Rebekah was my wound care nurse for over a year. She has the ability to assess the wound and suggest different teatments, especially when the wound healing process has stalled. My skin disease, Pyoderma Gangrenosum, is rare but Rebekah took her time to research all different types of care. She does an excellent job at time management and is a problem solver. Highly recommended!",
+  //   author: "Pat",
+  //   rating: 5,
+  //   location: "Austin, TX",
+  // },
 ];
