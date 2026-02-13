@@ -103,7 +103,22 @@ const ServicesPage = () => {
         "Complex medical equipment training",
       ],
     },
-
+    {
+      id: "physical-therapy",
+      title: "Physical Therapy",
+      description:
+        "We offer Physical Therapy services at our clinic to help patients regain strength, balance, and mobility. Our therapists provide one-on-one, personalized care in a professional setting to ensure your recovery is safe, effective, and goal-oriented.",
+      icon: ActivityIcon,
+      color: "purple",
+      features: [
+        "Therapeutic Exercise: Customized strengthening and stretching programs.",
+        "Balance & Fall Prevention: Targeted training to reduce fall risks.",
+        "Neuromuscular Re-Education: Improving muscle control, coordination, and balance.",
+        "Pain Management: Hands-on therapy, heat/cold treatments, and other modalities.",
+        "Post-Surgical Rehabilitation: Guided recovery and mobility training after surgery.",
+        "Chronic Condition Support: Ongoing therapy for arthritis, stroke, Parkinson’s disease, and other conditions.",
+      ],
+    },
     {
       id: "occupational-therapy",
       title: "Occupational Therapy",
